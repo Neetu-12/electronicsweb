@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
+import { useWishlist } from '../context/WishlistContext.jsx'
 
 export default function ProductCard({ product }) {
   const { addItem } = useCart()
+  const { toggleItem, hasItem } = useWishlist()
   const [showSuccess, setShowSuccess] = useState(false)
   const id = product._id || product.id
 
@@ -26,7 +28,7 @@ export default function ProductCard({ product }) {
         <span>{product.category}</span>
         <span>★ {product.rating || '4.8'} ({product.reviews || 0})</span>
       </div>
-      <h3><Link to={`/products/${id}`}>{product.name}</Link></h3>
+      <div className="product-card-title"><h3><Link to={`/products/${id}`}>{product.name}</Link></h3><button className={`wishlist-button${hasItem(id) ? ' saved' : ''}`} onClick={() => toggleItem(product)} aria-label={hasItem(id) ? `Remove ${product.name} from wishlist` : `Save ${product.name} to wishlist`}>{hasItem(id) ? '♥' : '♡'}</button></div>
       <div className="price">
         <strong>${product.price}</strong>{product.oldPrice && <del>${product.oldPrice}</del>}</div>
     </div>

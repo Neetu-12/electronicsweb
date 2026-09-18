@@ -55,4 +55,37 @@ export const fallbackProducts = [
     badge: '20% off',
     image: 'https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=900&q=85'
   },
+  {
+    id: 'demo-4',
+    name: 'VoltBook Air Laptop',
+    category: 'Computing',
+    price: 999,
+    stock: 9,
+    rating: 4.8,
+    reviews: 42,
+    badge: 'Work anywhere',
+    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=85'
+  },
+  {
+    id: 'demo-5',
+    name: 'Pocket Audio Mini',
+    category: 'Audio',
+    price: 129,
+    stock: 24,
+    rating: 4.6,
+    reviews: 37,
+    badge: 'New arrival',
+    image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e?auto=format&fit=crop&w=900&q=85'
+  },
+  {
+    id: 'demo-6',
+    name: 'Pulse Smart Watch',
+    category: 'Wearables',
+    price: 229,
+    stock: 15,
+    rating: 4.7,
+    reviews: 29,
+    badge: 'Everyday essential',
+    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85'
+  },
 ]

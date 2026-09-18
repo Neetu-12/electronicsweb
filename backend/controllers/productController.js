@@ -2,8 +2,14 @@ import mongoose from 'mongoose'
 import { fallbackProducts, Product } from '../models/Product.js'
 
 export async function listProducts(request, response) {
-  if (Product.db.readyState !== 1)
-    return response.json(fallbackProducts)
+  if (Product.db.readyState !== 1) {
+    const category = request.query.category?.toLowerCase()
+    const search = request.query.search?.trim().toLowerCase()
+    const products = fallbackProducts.filter((product) =>
+      (!category || product.category.toLowerCase() === category) &&
+      (!search || `${product.name} ${product.category} ${product.description || ''}`.toLowerCase().includes(search)))
+    return response.json(products)
+  }
 
   const filter = {}
   if (request.query.category) filter.category = request.query.category

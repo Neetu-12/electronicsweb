@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import { CartProvider } from './context/CartContext.jsx'
+import { WishlistProvider } from './context/WishlistContext.jsx'
 import Home from './pages/Home.jsx'
 import Products from './pages/Products.jsx'
 import ProductDetails from './pages/ProductDetails.jsx'
@@ -22,7 +23,7 @@ import './App.css'
 
 export default function App() {
   return <BrowserRouter>
-    <CartProvider><div className="storefront">
+    <CartProvider><WishlistProvider><div className="storefront">
       <div className="announcement">Free shipping on orders over $75 <span>•</span> 30-day easy returns</div>
       <Navbar />
       <main>
@@ -53,7 +54,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
-    </div>
+    </div></WishlistProvider>
     </CartProvider>
   </BrowserRouter>
 }

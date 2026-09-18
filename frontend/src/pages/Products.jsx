@@ -18,7 +18,7 @@ export default function Products() {
   return <section className="catalog">
     <div className="section-heading"><div>
       <p className="eyebrow">Find your next favorite</p>
-      <h2>Shop the edit</h2>
+      <h2>Explore products</h2>
     </div>
       <p className="catalog-note">Modern essentials and little upgrades that make a difference.</p>
     </div>
@@ -26,6 +26,6 @@ export default function Products() {
       <div className="category-tabs">{categories.map((item) =>
         <button className={category === item ? 'active' : ''} key={item} onClick={() => updateCategory(item)}>{item}</button>)}
       </div>
-      <label className="product-search">Search products<input value={search} onChange={(event) => { setSearch(event.target.value); setSearchParams(event.target.value ? { search: event.target.value } : {}) }} placeholder="Search the collection" /></label>
+      <label className="product-search">Search products<input value={search} onChange={(event) => { setSearch(event.target.value); setSearchParams(event.target.value ? { search: event.target.value } : {}) }} placeholder="Try laptop, Audio, or watch" /></label>
     </div>{loading ? <Loader /> : <div className="product-grid">{products.map((product) => <ProductCard key={product._id || product.id} product={product} />)}</div>}</section>
 }
