@@ -5,7 +5,7 @@ import { saveAuth } from '../services/auth.js'
 
 export default function Register() {
   const navigate = useNavigate(); 
-  const [form, setForm] = useState({ name: '', email: '', password: '' });
+  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'customer' });
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -35,6 +35,11 @@ export default function Register() {
         <input id="register-email" required autoComplete="email" type="email" placeholder="you@example.com" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} />
         <label htmlFor="register-password">Password</label>
         <input id="register-password" required autoComplete="new-password" type="password" placeholder="Create a password" value={form.password} onChange={(event) => setForm({ ...form, password: event.target.value })} />
+        <label htmlFor="register-role">Account type</label>
+        <select id="register-role" required value={form.role} onChange={(event) => setForm({ ...form, role: event.target.value })}>
+          <option value="customer">Customer</option>
+          <option value="admin">Admin</option>
+        </select>
         <button type="submit" disabled={isSubmitting} className="primary-button">{isSubmitting ? 'Creating account...' : 'Create account ↗'}
         </button>{error && <p className="error" role="alert">{error}</p>}
       </form>

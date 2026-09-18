@@ -34,9 +34,9 @@
 .auth-subtitle { margin:0 0 30px; color:#60706a; font-size:14px; line-height:1.6; }
 .auth-panel form { display:grid; gap:9px; }
 .auth-panel label { margin-top:8px; color:#475b56; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
-.auth-panel input { width:100%; border:1px solid #d5ccc2; border-radius:10px; background:#f7f3ee; color:#1f2c29; padding:14px 15px; outline:none; transition:border-color .2s, box-shadow .2s, background .2s; }
+.auth-panel input, .auth-panel select { width:100%; border:1px solid #d5ccc2; border-radius:10px; background:#f7f3ee; color:#1f2c29; padding:14px 15px; outline:none; transition:border-color .2s, box-shadow .2s, background .2s; }
 .auth-panel input::placeholder { color:#a5aaa4; }
-.auth-panel input:focus { border-color:#dc6a4c; background:#fffdf9; box-shadow:0 0 0 4px rgba(220,106,76,.12); }
+.auth-panel input:focus, .auth-panel select:focus { border-color:#dc6a4c; background:#fffdf9; box-shadow:0 0 0 4px rgba(220,106,76,.12); }
 .auth-panel .primary-button { justify-content:space-between; width:100%; margin-top:14px; }
 .auth-switch { margin:25px 0 0; color:#60706a; font-size:13px; text-align:center; }
 .auth-switch a { color:#c65c43; font-weight:700; text-decoration:none; }
