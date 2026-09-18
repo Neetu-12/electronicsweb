@@ -27,7 +27,7 @@ export default function AdminLayout() {
 
   return <section className="admin-shell">
     <aside className="admin-sidebar">
-      <div className="admin-brand"><span>ElectroHub</span><small>ADMIN PANEL</small></div>
+      <NavLink className="admin-brand" to="/admin" end><span>ElectroHub</span><small>ADMIN PANEL</small></NavLink>
       <nav className="admin-nav" aria-label="Admin navigation">
         {navigation.map((item) => <NavLink key={item.to} to={item.to} end={item.end}>
           <span aria-hidden="true">{item.icon}</span>{item.label}

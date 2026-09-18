@@ -124,6 +124,8 @@
 .admin-shell { min-height:calc(100vh - 155px); display:grid; grid-template-columns:240px minmax(0,1fr); background:#f4f1eb; }
 .admin-sidebar { display:flex; flex-direction:column; padding:30px 18px; background:#20312c; color:#e4eee6; }
 .admin-brand { display:flex; flex-direction:column; gap:5px; padding:0 14px 30px; border-bottom:1px solid rgba(228,238,230,.16); }
+.admin-brand { color:#e4eee6; text-decoration:none; }
+.admin-brand:hover { color:#fff; }
 .admin-brand span { font-size:28px; font-weight:700; letter-spacing:-.07em; }
 .admin-brand small { color:#e2b84a; font-size:9px; font-weight:700; letter-spacing:.16em; }
 .admin-nav { display:grid; gap:4px; padding-top:24px; }

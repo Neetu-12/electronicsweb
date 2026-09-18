@@ -25,6 +25,7 @@ export default function Navbar() {
       <Link to="/">Our story</Link>
       <Link to="/orders">Orders</Link>
       <Link to="/wishlist">Wishlist</Link>
+      {user?.role === 'admin' && <Link to="/admin">Admin panel</Link>}
     </nav>
     <div className="header-actions">
       {user ?
