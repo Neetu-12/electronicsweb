@@ -10,13 +10,16 @@ async function request(path, options = {}) {
 }
 
 export const api = {
-  getProducts: (category = '') => request(`/products${category ? `?category=${encodeURIComponent(category)}` : ''}`),
+  getProducts: (category = '', search = '') => request(`/products${category || search ? `?${new URLSearchParams({ ...(category ? { category } : {}), ...(search ? { search } : {}) }).toString()}` : ''}`),
   getProduct: (id) => request(`/products/${id}`),
   createProduct: (payload) => request('/products',
     {
       method: 'POST',
       body: JSON.stringify(payload)
     }),
+  updateProduct: (id, payload) => request(`/products/${id}`,
+    { method: 'PATCH', body: JSON.stringify(payload) }),
+  deleteProduct: (id) => request(`/products/${id}`, { method: 'DELETE' }),
   register: (payload) => request('/auth/register',
     {
       method: 'POST',

@@ -6,6 +6,7 @@ export default function AdminProducts() {
     const emptyProduct = { name: '', category: '', price: '', stock: '', rating: '', reviews: '', badge: '', image: '' }
     const [products, setProducts] = useState([])
     const [form, setForm] = useState(emptyProduct)
+    const [editingId, setEditingId] = useState(null)
     const [error, setError] = useState('')
     const [saving, setSaving] = useState(false)
 
@@ -21,14 +22,17 @@ export default function AdminProducts() {
         setError('')
         setSaving(true)
         try {
-            await api.createProduct({
+            const payload = {
                 ...form,
                 price: Number(form.price),
                 stock: Number(form.stock || 0),
                 rating: Number(form.rating || 0),
                 reviews: Number(form.reviews || 0)
-            })
+            }
+            if (editingId) await api.updateProduct(editingId, payload)
+            else await api.createProduct(payload)
             setForm(emptyProduct)
+            setEditingId(null)
             await loadProducts()
         } catch (requestError) {
             setError(requestError.message)
@@ -37,11 +41,33 @@ export default function AdminProducts() {
         }
     }
 
+    const editProduct = (product) => {
+        setEditingId(product._id || product.id)
+        setForm({ ...emptyProduct, ...product })
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+
+    const deleteProduct = async (product) => {
+        if (!window.confirm(`Delete ${product.name}?`)) return
+        setError('')
+        try {
+            await api.deleteProduct(product._id || product.id)
+            await loadProducts()
+        } catch (requestError) {
+            setError(requestError.message)
+        }
+    }
+
+    const cancelEdit = () => {
+        setEditingId(null)
+        setForm(emptyProduct)
+    }
+
     return <section className="catalog">
         <p className="eyebrow">Admin inventory</p>
         <h2>Products</h2>
         <form className="admin-product-form" onSubmit={handleSubmit}>
-            <h3>Add product</h3>
+            <h3>{editingId ? 'Edit product' : 'Add product'}</h3>
             <div className="admin-product-fields">
                 <label>Name
                     <input name="name" value={form.name} onChange={handleChange} placeholder="iPhone 18" required />
@@ -69,9 +95,9 @@ export default function AdminProducts() {
                 </label>
             </div>
             {error && <p className="error">{error}</p>}
-            <button className="primary-button" type="submit" disabled={saving}>{saving ? 'Adding...' : 'Add product'}</button>
+            <div className="admin-form-actions"><button className="primary-button" type="submit" disabled={saving}>{saving ? 'Saving...' : editingId ? 'Save changes' : 'Add product'}</button>{editingId && <button className="secondary-button" type="button" onClick={cancelEdit}>Cancel</button>}</div>
         </form>
-        <div className="product-grid">{products.map((product) => <ProductCard product={product} key={product._id || product.id} />)}
+        <div className="product-grid">{products.map((product) => <div className="admin-product-card" key={product._id || product.id}><ProductCard product={product} /><div className="admin-card-actions"><button className="secondary-button" onClick={() => editProduct(product)}>Edit</button><button className="danger-button" onClick={() => deleteProduct(product)}>Delete</button></div></div>)}
         </div>
     </section>
 }

@@ -24,6 +24,7 @@ export default function Navbar() {
       <Link to="/products">Shop</Link>
       <Link to="/">Our story</Link>
       <Link to="/orders">Orders</Link>
+      <Link to="/wishlist">Wishlist</Link>
     </nav>
     <div className="header-actions">
       {user ?

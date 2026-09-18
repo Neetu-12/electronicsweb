@@ -53,7 +53,7 @@ function AuthForm({ title, subtitle, submitLabel, form, setForm, onSubmit, error
           required autoComplete="current-password"
           type="password"
           placeholder="Enter your password"
-          xvalue={form.password} onChange={(event) => setForm({ ...form, password: event.target.value })} />
+          value={form.password} onChange={(event) => setForm({ ...form, password: event.target.value })} />
         <button type="submit"
           disabled={isSubmitting}
           className="primary-button">{isSubmitting ? 'Signing in...' : `${submitLabel} ↗`} </button>

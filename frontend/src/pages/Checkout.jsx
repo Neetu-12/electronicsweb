@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
-import { api } from '../services/api.js'
 
 const defaultForm = {
   fullName: '',
@@ -55,20 +54,14 @@ export default function Checkout() {
     setMessage('')
 
     try {
-      await api.createOrder({
+      navigate('/payment', { state: { shipping: {
+        fullName: form.fullName,
         email: form.email,
-        items,
-        shippingAddress: {
-          fullName: form.fullName,
-          address: form.address,
-          city: form.city,
-          zip: form.zip,
-          country: form.country,
-        },
-      })
-
-      setMessage('Order placed successfully.')
-      navigate('/orders')
+        address: form.address,
+        city: form.city,
+        zip: form.zip,
+        country: form.country,
+      } } })
     } catch (error) {
       setMessage(error.message || 'Unable to place your order.')
     } finally {
@@ -135,7 +128,7 @@ export default function Checkout() {
                 <div>
                   <strong>{item.name}</strong>
                   <span>${Number(item.price || 0).toFixed(2)}</span>
-                                  <span>${Number(item.price || 0).toFixed(2)} × {item.quantity || 1}</span>
+                  <span>${Number(item.price || 0).toFixed(2)} × {item.quantity || 1}</span>
                 </div>
               </li>
             ))}

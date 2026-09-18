@@ -9,6 +9,9 @@ import Cart from './pages/Cart.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import Checkout from './pages/Checkout.jsx'
+import Payment from './pages/Payment.jsx'
+import OrderConfirmation from './pages/OrderConfirmation.jsx'
+import Wishlist from './pages/Wishlist.jsx'
 import Orders from './pages/Orders.jsx'
 import Dashboard from './admin/Dashboard.jsx'
 import AdminProducts from './admin/Products.jsx'
@@ -23,14 +26,18 @@ export default function App() {
       <div className="announcement">Free shipping on orders over $75 <span>•</span> 30-day easy returns</div>
       <Navbar />
       <main>
-        <Routes><Route path="/" element={<Home />} />
+        <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="products" element={<AdminProducts />} />
@@ -42,7 +49,8 @@ export default function App() {
             <Route path="reviews" element={<AdminPlaceholder title="Reviews" icon="⭐" description="Moderate product feedback and ratings." />} />
             <Route path="reports" element={<AdminPlaceholder title="Reports" icon="📈" description="Track store performance and sales activity." />} />
             <Route path="settings" element={<AdminPlaceholder title="Settings" icon="⚙️" description="Configure store and account preferences." />} />
-          </Route></Routes>
+          </Route>
+        </Routes>
       </main>
       <Footer />
     </div>

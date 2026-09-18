@@ -12,6 +12,18 @@
 .checkout-form label { display:grid; gap:8px; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#475b56; }
 .checkout-form input { width:100%; border:1px solid #d5ccc2; border-radius:12px; background:#f7f3ee; padding:14px 16px; font-size:15px; color:#1f2c29; outline:none; }
 .checkout-form input:focus { border-color:#dc6a4c; box-shadow:0 0 0 4px rgba(220,106,76,0.12); }
+.checkout-form select { width:100%; border:1px solid #d5ccc2; border-radius:12px; background:#f7f3ee; padding:14px 16px; font-size:15px; color:#1f2c29; outline:none; }
+.product-search { display:grid; gap:8px; margin-left:auto; color:#475b56; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+.product-search input { min-width:240px; border:1px solid #d5ccc2; border-radius:10px; background:#f7f3ee; padding:12px 14px; color:#1f2c29; outline:none; }
+.product-search input:focus { border-color:#dc6a4c; box-shadow:0 0 0 3px rgba(220,106,76,.12); }
+.product-actions { display:flex; align-items:center; flex-wrap:wrap; gap:12px; }
+.secondary-button { border:1px solid #20312c; background:transparent; color:#20312c; padding:14px 18px; font-size:12px; font-weight:700; cursor:pointer; }
+.secondary-button:hover { background:#20312c; color:#fff; }
+.confirmation-page { max-width:680px; margin:0 auto; padding:120px 5.8%; text-align:center; }
+.confirmation-mark { display:grid; place-items:center; width:70px; height:70px; margin:0 auto 28px; border-radius:50%; background:#e2b84a; color:#20312c; font-size:34px; }
+.confirmation-page h2 { margin:0 0 18px; color:#20312c; font-size:clamp(42px,6vw,72px); font-weight:500; letter-spacing:-.07em; line-height:.95; }
+.confirmation-page > p:not(.eyebrow) { color:#60706a; line-height:1.7; }
+.confirmation-actions { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:22px; margin-top:32px; }
 .primary-button[disabled] { opacity:.7; cursor:not-allowed; }
 .error { margin:0; color:#a93a2f; font-weight:600; }
 .summary-list { list-style:none; padding:0; margin:0 0 28px; display:grid; gap:16px; }
@@ -54,7 +66,7 @@
 .logout-button:hover, .login-button:hover { color:#dc6a4c; }
 @media (max-width: 760px) { .auth-page { min-height:calc(100vh - 210px); display:block; padding:55px 5%; }.auth-panel { max-width:520px; margin:0 auto; padding:30px 24px; }.auth-note { display:none; } }
 .empty-checkout p { margin:0 0 26px; color:#60706a; }
-@media (max-width: 760px) { .checkout-page { padding:70px 5%; } .checkout-grid { grid-template-columns:1fr; } .checkout-panel, .checkout-summary { padding:24px 20px; } .field-row { grid-template-columns:1fr; } }
+@media (max-width: 760px) { .checkout-page { padding:70px 5%; } .checkout-grid { grid-template-columns:1fr; } .checkout-panel, .checkout-summary { padding:24px 20px; } .field-row { grid-template-columns:1fr; } .product-search { margin:12px 0 0; } .product-search input { min-width:0; width:100%; } .product-actions { align-items:stretch; flex-direction:column; } .product-actions .primary-button, .product-actions .secondary-button { justify-content:center; width:100%; } }
 .hero-image { position:relative; }
 .hero-stamp { position:absolute; right:24px; bottom:24px; width:92px; height:92px; display:grid; place-content:center; border-radius:50%; background:#e2b84a; color:#20312c; font-size:10px; font-weight:700; line-height:1.25; text-align:center; transform:rotate(9deg); }
 .hero-stamp em { font-family:'Playfair Display',serif; font-size:14px; font-weight:500; }
@@ -91,6 +103,12 @@
 .admin-product-fields input { width:100%; box-sizing:border-box; border:1px solid #d5ccc2; background:#f7f3ee; color:#1f2c29; padding:12px; font-size:14px; outline:none; }
 .admin-product-fields input:focus { border-color:#dc6a4c; box-shadow:0 0 0 3px rgba(220,106,76,.12); }
 .admin-product-form .error { margin:0 0 16px; }
+.admin-form-actions, .admin-card-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.admin-card-actions { padding:0 0 18px; }
+.admin-card-actions .secondary-button, .admin-card-actions .danger-button { padding:9px 13px; }
+.danger-button { border:1px solid #a93a2f; background:transparent; color:#a93a2f; padding:14px 18px; font-size:12px; font-weight:700; cursor:pointer; }
+.danger-button:hover { background:#a93a2f; color:#fff; }
+.admin-product-card { min-width:0; }
 @media (max-width:760px) { .admin-product-form { padding:20px; } .admin-product-fields { grid-template-columns:1fr 1fr; } }
 .admin-shell { min-height:calc(100vh - 155px); display:grid; grid-template-columns:240px minmax(0,1fr); background:#f4f1eb; }
 .admin-sidebar { display:flex; flex-direction:column; padding:30px 18px; background:#20312c; color:#e4eee6; }
