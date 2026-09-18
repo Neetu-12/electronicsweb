@@ -16,7 +16,7 @@ export default function Login() {
     try {
       const result = await api.login(form);
       saveAuth(result);
-      navigate('/orders')
+      navigate(result.user.role === 'admin' ? '/admin' : '/orders')
     } catch (err) {
       setError(err.message); setIsSubmitting(false)
     }
