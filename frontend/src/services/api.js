@@ -33,4 +33,5 @@ export const api = {
   createOrder: (payload) => request('/orders',
     { method: 'POST', body: JSON.stringify(payload) }),
   getOrders: () => request('/orders'),
+  getUsers: () => request('/users'),
 }

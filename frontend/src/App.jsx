@@ -19,6 +19,7 @@ import AdminProducts from './admin/Products.jsx'
 import AdminOrders from './admin/Orders.jsx'
 import AdminLayout from './admin/AdminLayout.jsx'
 import AdminPlaceholder from './admin/AdminPlaceholder.jsx'
+import AdminUsers from './admin/Users.jsx'
 import './App.css'
 
 export default function App() {
@@ -44,7 +45,7 @@ export default function App() {
             <Route path="products" element={<AdminProducts />} />
             <Route path="categories" element={<AdminPlaceholder title="Categories" icon="🗂️" description="Organize products into clear storefront collections." />} />
             <Route path="orders" element={<AdminOrders />} />
-            <Route path="users" element={<AdminPlaceholder title="Users" icon="👥" description="View and manage customer accounts." />} />
+            <Route path="users" element={<AdminUsers />} />
             <Route path="inventory" element={<AdminPlaceholder title="Inventory" icon="📦" description="Monitor stock levels across the catalog." />} />
             <Route path="coupons" element={<AdminPlaceholder title="Coupons" icon="🎟️" description="Create and manage promotional offers." />} />
             <Route path="reviews" element={<AdminPlaceholder title="Reviews" icon="⭐" description="Moderate product feedback and ratings." />} />

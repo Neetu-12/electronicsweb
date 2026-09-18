@@ -146,4 +146,12 @@
 .admin-overview-card small { color:#60706a; }
 .admin-empty-state { display:grid; gap:8px; padding:36px; border:1px dashed #c9beb2; background:rgba(255,255,255,.35); color:#20312c; }
 .admin-empty-state span { color:#60706a; font-size:14px; }
+.admin-table-wrap { overflow-x:auto; border:1px solid #d8d0c7; background:rgba(255,255,255,.55); }
+.admin-table { width:100%; border-collapse:collapse; min-width:620px; text-align:left; }
+.admin-table th, .admin-table td { padding:16px 20px; border-bottom:1px solid #e5dfd6; color:#20312c; font-size:14px; }
+.admin-table th { color:#60706a; font-size:10px; letter-spacing:.1em; text-transform:uppercase; }
+.admin-table tr:last-child td { border-bottom:0; }
+.role-badge { display:inline-block; padding:5px 9px; border-radius:999px; font-size:11px; font-weight:700; text-transform:capitalize; }
+.role-admin { background:#f8df9a; color:#6b4d00; }
+.role-customer { background:#dcebe5; color:#315b4e; }
 @media (max-width:760px) { .admin-shell { display:block; min-height:calc(100vh - 210px); }.admin-sidebar { padding:20px 5%; }.admin-brand { padding:0 0 18px; }.admin-nav { display:flex; flex-wrap:wrap; gap:4px; padding-top:15px; }.admin-nav a { padding:9px 10px; }.admin-logout { width:auto; margin-top:14px; }.admin-content { padding:55px 5%; }.admin-overview-grid { grid-template-columns:1fr; } }

@@ -34,5 +34,5 @@ export const User = mongoose.models.User || mongoose.model('User', userSchema)
 
 export function serializeUser(user) {
   if (!user) return null
-  return { id: String(user._id), name: user.name, email: user.email, role: user.role }
+  return { id: String(user._id), name: user.name, email: user.email, role: user.role, createdAt: user.createdAt }
 }
