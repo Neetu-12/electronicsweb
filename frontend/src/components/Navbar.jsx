@@ -32,7 +32,7 @@ export default function Navbar() {
           <span className="account-name">Hi, {user.name}</span>
           <button className="logout-button" onClick={logout}>Log out</button>
         </div> : <Link className="login-button" to="/login">Log in <span>↗</span></Link>}
-      <Link className="cart-button" to="/cart">Cart <b>{itemCount}</b></Link>
+      <Link className="cart-button" to="/cart" aria-label={`Cart with ${itemCount} item${itemCount === 1 ? '' : 's'}`} title="Cart"><span aria-hidden="true">🛒</span><b>{itemCount}</b></Link>
     </div>
   </header>
 }

@@ -21,7 +21,7 @@ export default function ProductCard({ product }) {
   return <article className="product-card"><div className="product-image"><img src={product.image} alt={product.name} />
     <span className="badge">{product.badge || product.category}</span>
     <button className="quick-add" onClick={handleAdd} aria-label={`Add ${product.name} to cart`}>+</button>
-    {showSuccess && <div className="add-success" role="status">Item added successfully</div>}</div>
+    {showSuccess && <div className="add-success" role="status">{product.name} added to cart</div>}</div>
 
     <div className="product-info">
       <div className="product-meta">

@@ -12,18 +12,25 @@ export async function listProducts(request, response) {
   }
 
   const filter = {}
-  if (request.query.category) filter.category = request.query.category
+  if (request.query.category) filter.category = { $regex: `^${escapeRegex(request.query.category.trim())}$`, $options: 'i' }
   if (request.query.search) {
     const search = request.query.search.trim()
-    if (search) filter.$or = [
-      { name: { $regex: search, $options: 'i' } },
-      { category: { $regex: search, $options: 'i' } },
-      { description: { $regex: search, $options: 'i' } }
-    ]
+    if (search) {
+      const safeSearch = escapeRegex(search)
+      filter.$or = [
+        { name: { $regex: safeSearch, $options: 'i' } },
+        { category: { $regex: safeSearch, $options: 'i' } },
+        { description: { $regex: safeSearch, $options: 'i' } }
+      ]
+    }
   }
 
   const products = await Product.find(filter).sort({ createdAt: -1 }).lean()
-  response.json(products.length ? products : fallbackProducts)
+  response.json(products.length || Object.keys(filter).length ? products : fallbackProducts)
+}
+
+function escapeRegex(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }
 
 export async function getProduct(request, response) {

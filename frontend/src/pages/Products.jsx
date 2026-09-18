@@ -12,6 +12,7 @@ export default function Products() {
   const [search, setSearch] = useState(searchParams.get('search') || '')
   const [loading, setLoading] = useState(true)
   useEffect(() => {
+    setLoading(true)
     api.getProducts(category === 'All products' ? '' : category, search).then(setProducts).catch(() => setProducts([])).finally(() => setLoading(false))
   }, [category, search])
   const updateCategory = (value) => { setCategory(value); setSearchParams(value === 'All products' ? {} : { category: value }) }
@@ -27,5 +28,5 @@ export default function Products() {
         <button className={category === item ? 'active' : ''} key={item} onClick={() => updateCategory(item)}>{item}</button>)}
       </div>
       <label className="product-search">Search products<input value={search} onChange={(event) => { setSearch(event.target.value); setSearchParams(event.target.value ? { search: event.target.value } : {}) }} placeholder="Try laptop, Audio, or watch" /></label>
-    </div>{loading ? <Loader /> : <div className="product-grid">{products.map((product) => <ProductCard key={product._id || product.id} product={product} />)}</div>}</section>
+    </div>{loading ? <Loader /> : products.length ? <div className="product-grid">{products.map((product) => <ProductCard key={product._id || product.id} product={product} />)}</div> : <p className="cart-empty">No products found. Try another search.</p>}</section>
 }
