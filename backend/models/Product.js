@@ -75,7 +75,7 @@ export const fallbackProducts = [
     rating: 4.6,
     reviews: 37,
     badge: 'New arrival',
-    image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e?auto=format&fit=crop&w=900&q=85'
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85'
   },
   {
     id: 'demo-6',

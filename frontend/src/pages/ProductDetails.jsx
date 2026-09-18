@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
 import { useWishlist } from '../context/WishlistContext.jsx'
 import { api } from '../services/api.js'
@@ -10,8 +10,15 @@ export default function ProductDetails() {
   const { addItem } = useCart()
   const { toggleItem, hasItem } = useWishlist()
   const [product, setProduct] = useState(null)
-  useEffect(() => { api.getProduct(id).then(setProduct).catch(() => setProduct(null)) }, [id])
-  if (!product) return <Loader />
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+  useEffect(() => {
+    setLoading(true)
+    setError('')
+    api.getProduct(id).then(setProduct).catch((requestError) => { setProduct(null); setError(requestError.message || 'Product not found') }).finally(() => setLoading(false))
+  }, [id])
+  if (loading) return <Loader />
+  if (error || !product) return <section className="catalog empty-state"><p className="eyebrow">Product unavailable</p><h2>{error || 'Product not found'}</h2><Link className="primary-button" to="/products">Back to products <span>↗</span></Link></section>
   const saved = hasItem(product._id || product.id)
   return <section className="catalog product-details"><div className="product-image"><img src={product.image} alt={product.name} /></div><div><p className="eyebrow">{product.category}</p><h2>{product.name}</h2><p className="hero-text">{product.description || 'A thoughtfully selected electronic essential for your everyday setup.'}</p><div className="price"><strong>${product.price}</strong></div><div className="product-actions"><button className="primary-button" onClick={() => addItem(product)}>Add to cart <span>↗</span></button><button className="secondary-button" onClick={() => toggleItem(product)}>{saved ? 'Saved to wishlist' : '♡ Save to wishlist'}</button></div></div></section>
 }

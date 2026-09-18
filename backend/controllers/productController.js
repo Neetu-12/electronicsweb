@@ -27,10 +27,16 @@ export async function listProducts(request, response) {
 }
 
 export async function getProduct(request, response) {
-  if (Product.db.readyState !== 1) 
-    return response.json(fallbackProducts.find((product) => product.id === request.params.id) || null)
+  const fallbackProduct = fallbackProducts.find((product) => product.id === request.params.id)
+  if (Product.db.readyState !== 1)
+    return response.json(fallbackProduct || null)
+
+  if (!mongoose.isObjectIdOrHexString(request.params.id)) {
+    if (fallbackProduct) return response.json(fallbackProduct)
+    return response.status(404).json({ error: 'Product not found' })
+  }
   
-  const product = mongoose.isObjectIdOrHexString(request.params.id) ? await Product.findById(request.params.id).lean() : null
+  const product = await Product.findById(request.params.id).lean()
   if (!product) return response.status(404).json({ error: 'Product not found' })
   response.json(product)
 }
