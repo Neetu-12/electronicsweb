@@ -3,12 +3,7 @@ import { fallbackProducts, Product } from '../models/Product.js'
 
 export async function listProducts(request, response) {
   if (Product.db.readyState !== 1) {
-    const category = request.query.category?.toLowerCase()
-    const search = request.query.search?.trim().toLowerCase()
-    const products = fallbackProducts.filter((product) =>
-      (!category || product.category.toLowerCase() === category) &&
-      (!search || `${product.name} ${product.category} ${product.description || ''}`.toLowerCase().includes(search)))
-    return response.json(products)
+    return response.json(getFallbackProducts(request.query))
   }
 
   const filter = {}
@@ -26,7 +21,15 @@ export async function listProducts(request, response) {
   }
 
   const products = await Product.find(filter).sort({ createdAt: -1 }).lean()
-  response.json(products.length || Object.keys(filter).length ? products : fallbackProducts)
+  response.json(products.length ? products : getFallbackProducts(request.query))
+}
+
+function getFallbackProducts(query = {}) {
+  const category = query.category?.trim().toLowerCase()
+  const search = query.search?.trim().toLowerCase()
+  return fallbackProducts.filter((product) =>
+    (!category || product.category.toLowerCase() === category) &&
+    (!search || `${product.name} ${product.category} ${product.description || ''}`.toLowerCase().includes(search)))
 }
 
 function escapeRegex(value) {
